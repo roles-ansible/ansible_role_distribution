@@ -3,3 +3,7 @@
   ansible.builtin.include_tasks:
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
+
+- name: Get distribution latest version
+  ansible.builtin.include_tasks:
+    file: 'set_distribution_version.yml'

@@ -1,4 +1,17 @@
 ---
+distribution__full_executable_path: tbd
+distribution__releases_latest: 'https://api.github.com/repos/distribution/distribution/releases/latest'
+distribution__git_repo: 'https://github.com/distribution/distribution'
+distribution__go_arch_map:
+  x86_64: 'amd64'
+  aarch64: 'arm64'
+  armv7l: 'armv7'
+  armv6l: 'armv6'
+  armv5l: 'armv5'
+  ppc64le: 'ppc64le'
+  s390x: 's390x'
+distribution__arch: "{{ distribution__go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+
 # versionscheck
 playbook_version_number: 03
 playbook_version_path: 'role-l3d.distribution.version'
