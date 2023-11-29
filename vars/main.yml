@@ -11,6 +11,7 @@ distribution__go_arch_map:
   ppc64le: 'ppc64le'
   s390x: 's390x'
 distribution__arch: "{{ distribution__go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+distribution__dependencies: []
 
 # versionscheck
 playbook_version_number: 03

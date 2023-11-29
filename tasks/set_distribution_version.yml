@@ -42,4 +42,5 @@
 
 - name: "Generate distribution download URL"
   ansible.builtin.set_fact:
-    distribution__dl_url: "{{ distribution__git_repo }}/releases/download/v{{ distribution__version_target }}/registry_{{ distribution__version_target }}_linux_{{ distribution__arch }}.tar.gz"
+    distribution__filename: "registry_{{ distribution__version_target }}_linux_{{ distribution__arch }}"
+    distribution__dl_url: "{{ distribution__git_repo }}/releases/download/v{{ distribution__version_target }}"
