@@ -10,3 +10,4 @@
   loop:
     - '/var/lib/distribution'
     - '/var/lib/distribution/download'
+    - "/var/lib/distribution/download/{{ distribution__filename }}"
