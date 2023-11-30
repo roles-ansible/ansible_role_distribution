@@ -38,10 +38,14 @@
       delay: 2
 
     - name: Unpack distribution binary
+      become: true
       ansible.builtin.unarchive:
         src: "/tmp/{{ distribution__filename }}.tar.gz"
         dest: "/var/lib/distribution/download/{{ distribution__filename }}"
         remote_src: true
+        owner: root
+        group: root
+        mode: 'u=rwX,g=rX,o='
 
     - name: Propagate distribution binary
       become: true
