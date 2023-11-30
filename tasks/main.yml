@@ -4,6 +4,14 @@
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
 
+- name: Create User and Group
+  ansible.builtin.include_tasks:
+    file: 'user_distribution.yml'
+
+- name: Create Directorys
+  ansible.builtin.include_tasks:
+    file: 'directorys_distribution.yml'
+
 - name: Get distribution latest version
   ansible.builtin.include_tasks:
     file: 'set_distribution_version.yml'

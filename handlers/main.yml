@@ -1,0 +1,5 @@
+---
+- name: "Restart distribution"
+  listen: "systemctl restart distribution"
+  ansible.builtin.debug:
+    msg: "tbd"

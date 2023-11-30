@@ -1,0 +1,18 @@
+---
+- name: "Create distribution Group"
+  become: true
+  ansible.builtin.group:
+    name: "{{ distribution__group }}"
+    system: true
+    state: "present"
+
+- name: "Create distribution user"
+  become: true
+  ansible.builtin.user:
+    name: "{{ distribution__user }}"
+    comment: "distribution user for registry"
+    group: "{{ distribution__group }}"
+    groups: "{{ distribution__groups | default(omit) }}"
+    home: "/var/lib/distribution"
+    shell: "/usr/sbin/nologin"
+    system: true

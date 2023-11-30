@@ -1,5 +1,4 @@
 ---
-distribution__full_executable_path: tbd
 distribution__releases_latest: 'https://api.github.com/repos/distribution/distribution/releases/latest'
 distribution__git_repo: 'https://github.com/distribution/distribution'
 distribution__go_arch_map:
@@ -12,7 +11,8 @@ distribution__go_arch_map:
   s390x: 's390x'
 distribution__arch: "{{ distribution__go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
 distribution__dependencies: []
+distribution__full_executable_path: '/usr/local/bin/regestry'
 
 # versionscheck
-playbook_version_number: 03
+playbook_version_number: 4
 playbook_version_path: 'role-l3d.distribution.version'

@@ -1,0 +1,12 @@
+---
+- name: "Create config and data directory"
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ distribution__user }}"
+    group: "{{ distribution__group }}"
+    mode: 'u=rwX,g=rX,o='
+  loop:
+    - '/var/lib/distribution'
+    - '/var/lib/distribution/download'

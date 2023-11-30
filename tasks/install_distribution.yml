@@ -38,17 +38,18 @@
       delay: 2
 
     - name: Unpack distribution binary
-      ansible.builtin.command:
-        cmd: "xz -k -d /tmp/{{ gitea_filename }}.xz"
-        creates: "/tmp/{{ gitea_filename }}"
+      ansible.builtin.unarchive:
+        src: "/tmp/{{ distribution__filename }}.tar.gz"
+        dest: "/var/lib/distribution/download/{{ distribution__filename }}"
+        remote_src: true
 
     - name: Propagate distribution binary
       become: true
       ansible.builtin.copy:
-        src: "/tmp/{{ gitea_filename }}"
+        src: "/var/lib/distribution/download/{{ distribution__filename }}/registry"
         remote_src: true
-        dest: "{{ gitea_full_executable_path }}"
+        dest: "{{ distribution__full_executable_path }}"
         mode: 0755
         owner: root
         group: root
-      notify: "Restart gitea"
+      notify: "systemctl restart distribution"

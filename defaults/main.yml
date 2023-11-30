@@ -2,5 +2,8 @@
 distribution__version: "latest"
 distribution__filename: 'registry'
 
+distribution__user: 'registry'
+distribution__group: 'registry'
+
 # should we do a version check? (recomended)
 submodules_versioncheck: false
