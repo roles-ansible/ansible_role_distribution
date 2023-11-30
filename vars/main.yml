@@ -11,7 +11,7 @@ distribution__go_arch_map:
   s390x: 's390x'
 distribution__arch: "{{ distribution__go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
 distribution__dependencies: []
-distribution__full_executable_path: '/usr/local/bin/regestry'
+distribution__full_executable_path: '/usr/local/bin/registry'
 
 # versionscheck
 playbook_version_number: 4
