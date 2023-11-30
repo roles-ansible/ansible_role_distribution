@@ -8,13 +8,13 @@
   ansible.builtin.include_tasks:
     file: 'user_distribution.yml'
 
-- name: Create Directorys
-  ansible.builtin.include_tasks:
-    file: 'directorys_distribution.yml'
-
 - name: Get distribution latest version
   ansible.builtin.include_tasks:
     file: 'set_distribution_version.yml'
+
+- name: Create Directorys
+  ansible.builtin.include_tasks:
+    file: 'directorys_distribution.yml'
 
 - name: Install distribution
   ansible.builtin.include_tasks:
