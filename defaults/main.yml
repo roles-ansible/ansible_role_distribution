@@ -4,6 +4,9 @@ distribution__filename: 'registry'
 
 distribution__user: 'registry'
 distribution__group: 'registry'
-
+distribution__home: '/var/lib/distribution'
+distribution__systemd_cap_net_bind_service: false
+distribution__conf_network: ':5000'
+distribution__conf_version: '0.1'
 # should we do a version check? (recomended)
 submodules_versioncheck: false

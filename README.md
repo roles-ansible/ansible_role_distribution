@@ -8,3 +8,5 @@
 Ansible role to install the container registry [distribution](https://github.com/distribution/distribution.git)
 
 ## Work in progress...
+
+Example config: https://github.com/distribution/distribution/blob/main/cmd/registry/config-example.yml

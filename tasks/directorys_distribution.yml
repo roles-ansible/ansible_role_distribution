@@ -8,6 +8,6 @@
     group: "{{ distribution__group }}"
     mode: 'u=rwX,g=rX,o='
   loop:
-    - '/var/lib/distribution'
-    - '/var/lib/distribution/download'
-    - "/var/lib/distribution/download/{{ distribution__filename }}"
+    - '{{ distribution__home }}'
+    - '{{ distribution__home }}/download'
+    - "{{ distribution__home }}/download/{{ distribution__filename }}"

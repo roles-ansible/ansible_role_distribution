@@ -1,0 +1,11 @@
+---
+- name: Deploy config file
+  become: true
+  ansible.builtin.template:
+    src: 'templates/config.yml.j2'
+    dest: '/etc/registry.yml'
+    backup: true
+    owner: "root"
+    group: "{{ distribution__group }}"
+    mode: '0644'
+  notify: 'systemctl restart registry'

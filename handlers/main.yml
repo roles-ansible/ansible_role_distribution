@@ -1,5 +1,16 @@
 ---
-- name: "Restart distribution"
-  listen: "systemctl restart distribution"
-  ansible.builtin.debug:
-    msg: "tbd"
+- name: "Restart distribution registry"
+  listen: "systemctl restart registry"
+  become: true
+  ansible.builtin.systemd:
+    name: 'registry'
+    state: 'restarted'
+  when: ansible_service_mgr == "systemd"
+
+- name: "Reload systemd"
+  listen: 'systemctl daemon-reload'
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: ansible_service_mgr == "systemd"
+  notify: 'systemctl restart registry'

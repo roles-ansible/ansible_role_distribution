@@ -19,3 +19,12 @@
 - name: Install distribution
   ansible.builtin.include_tasks:
     file: 'install_distribution.yml'
+
+- name: Create registry config
+  ansible.builtin.include_tasks:
+    file: 'configure_distribution.yml'
+
+- name: Setup Systemd Service and start
+  ansible.builtin.include_tasks:
+    file: 'systemd.yml'
+  when: ansible_service_mgr == "systemd"

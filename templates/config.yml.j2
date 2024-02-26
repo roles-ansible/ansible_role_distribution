@@ -1,0 +1,20 @@
+---
+{{ ansible_managed | comment }}
+version: {{ distribution__conf_version }}
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: {{ distribution__home }}
+http:
+  addr: {{ distribution__conf_network }}
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3

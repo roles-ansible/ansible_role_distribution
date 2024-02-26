@@ -21,6 +21,7 @@
       retries: 5
       delay: 2
       with_items: "{{ distribution__dependencies }}"
+      notify: 'systemctl restart registry'
 
 - name: Install distribution block
   when: (not ansible_check_mode and (distribution__active_version.stdout != distribution__version_target))
@@ -41,7 +42,7 @@
       become: true
       ansible.builtin.unarchive:
         src: "/tmp/{{ distribution__filename }}.tar.gz"
-        dest: "/var/lib/distribution/download/{{ distribution__filename }}"
+        dest: "{{ distribution__home }}/download/{{ distribution__filename }}"
         remote_src: true
         owner: root
         group: root
@@ -50,10 +51,10 @@
     - name: Propagate distribution binary
       become: true
       ansible.builtin.copy:
-        src: "/var/lib/distribution/download/{{ distribution__filename }}/registry"
+        src: "{{ distribution__home }}/download/{{ distribution__filename }}/registry"
         remote_src: true
         dest: "{{ distribution__full_executable_path }}"
         mode: 0755
         owner: root
         group: root
-      notify: "systemctl restart distribution"
+      notify: 'systemctl restart registry'

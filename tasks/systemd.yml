@@ -1,0 +1,28 @@
+---
+- name: "Setup systemd service"
+  become: true
+  when: ansible_os_family == "Debian"
+  ansible.builtin.template:
+    src: 'registry.service.j2'
+    dest: '/lib/systemd/system/registry.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify:
+    - 'systemctl restart registry'
+    - 'systemctl daemon-reload'
+
+- name: "Reload systemd"
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+  notify: 'systemctl restart registry'
+
+- name: "Start and enable registry"
+  become: true
+  ansible.builtin.systemd:
+    name: registry
+    state: started
+    enabled: true
+  when: ansible_service_mgr == "systemd"
+  notify: 'systemctl restart registry'

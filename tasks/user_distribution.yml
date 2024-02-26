@@ -5,6 +5,7 @@
     name: "{{ distribution__group }}"
     system: true
     state: "present"
+  notify: 'systemctl restart registry'
 
 - name: "Create distribution user"
   become: true
@@ -13,6 +14,7 @@
     comment: "distribution user for registry"
     group: "{{ distribution__group }}"
     groups: "{{ distribution__groups | default(omit) }}"
-    home: "/var/lib/distribution"
+    home: "{{ distribution__home }}"
     shell: "/usr/sbin/nologin"
     system: true
+  notify: 'systemctl restart registry'
