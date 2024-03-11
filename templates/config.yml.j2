@@ -11,6 +11,27 @@ storage:
     rootdirectory: {{ distribution__home }}
 http:
   addr: {{ distribution__conf_network }}
+{% if distribution__conf_tls %}
+  tls:
+    certificate: {{ distribution__conf_tls_certificate }}
+    key: {{ distribution__conf_tls_key }}
+{%     if distribution__conf_tls_clientcas %}
+    clientcas:
+{%         for entry in distribution__conf_tls_clientcas_entry %}
+      - {{ entry }}
+{%         endfor %}
+{%     endif %}
+{% endif %}
+{% if distribution__conf_prometheus %}
+  debug:
+    addr: :5001
+    prometheus:
+      enabled: true
+      path: /metrics
+{% endif %}
+{% if distribution__conf_secret %}
+  secret: {{ distribution__conf_secret_secret }}
+{% endif %}
   headers:
     X-Content-Type-Options: [nosniff]
 {#  http.secret: todo #}

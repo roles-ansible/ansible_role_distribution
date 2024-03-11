@@ -8,5 +8,16 @@ distribution__home: '/var/lib/distribution'
 distribution__systemd_cap_net_bind_service: false
 distribution__conf_network: ':5000'
 distribution__conf_version: '0.1'
+distribution__conf_prometheus: true
+distribution__conf_secret: false
+distribution__conf_secret_secret: ''
+
+# tls
+distribution__conf_tls: false
+distribution__conf_tls_certificate: ''
+distribution__conf_tls_key: ''
+distribution__conf_tls_clientcas: false
+distribution__conf_tls_clientcas_entry: []
+
 # should we do a version check? (recomended)
 submodules_versioncheck: false

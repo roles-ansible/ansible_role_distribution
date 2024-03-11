@@ -1,16 +1,18 @@
 [Unit]
-Description=registry - the inventory and organization system built for Home Users
+Description=registry - a docker registry called distribution
 After=network.target
 
 [Service]
+Type=simple
 User={{ distribution__user }}
 Group={{ distribution__group }}
 ExecStart={{ distribution__full_executable_path }} serve /etc/registry.yml
-Restart=on-failure
 WorkingDirectory={{ distribution__home }}
 {% if distribution__systemd_cap_net_bind_service | bool %}
 AmbientCapabilities=CAP_NET_BIND_SERVICE
 {% endif %}
+Restart=always
+RestartSec=10s
 
 [Install]
 WantedBy=multi-user.target
